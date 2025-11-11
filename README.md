@@ -1,5 +1,7 @@
 to use this use
-- python3 .Create-New-Project/main.py {ProjectName} {LangaugePrefix} {ProjectPath}
+- python3 main.py {ProjectName} {LangaugePrefix} {ProjectPath}
+
+this creates a project file with a main file and a run script (also makes a venv for python)
 
 currently this only supports:
 - Python
