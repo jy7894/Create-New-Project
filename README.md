@@ -1,7 +1,9 @@
 to use this use
 - python3 .Create-New-Project/main.py {ProjectName} {LangaugePrefix} {ProjectPath}
 
-currenly this only supports:
+currently this only supports:
 - Python
 - Java
 - c++
+
+currently this uses python3 and using bash for run sripts (will add powershell soon)
