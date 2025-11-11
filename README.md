@@ -6,4 +6,4 @@ currently this only supports:
 - Java
 - c++
 
-currently this uses python3 and using bash for run sripts (will add powershell soon)
+currently this uses python3 and uses bash for run sripts (will add powershell soon)
