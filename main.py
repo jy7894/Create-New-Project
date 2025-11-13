@@ -12,6 +12,9 @@ def Write2File(text: str, file: Union[str, os.PathLike[str]]):
         raise RuntimeError(f"Failed to write run script: {e}")
 
 def main():
+    if platform.system().lower() != "linux":
+        raise SystemError("This script was made for linux\ni am NOT bothered to try get this working on linux")
+
     if len(sys.argv) > 1:
         projectName = str(sys.argv[1]).strip().lower()
         langaugePrefix = str(sys.argv[2]).strip().lower()
@@ -38,36 +41,40 @@ def main():
 
     if langaugePrefix in {"python","py"}:
         runScript = f"#!/bin/bash\n{project_path}/.venv/bin/python {project_path}/main.py"
-        PShellScript = f"& \"{project_path}/.venv/bin/python3\" {project_path}/main.py"
+        BatchScript = f"{project_path}/.venv/bin/python {project_path}/main.py"
         lang = "py"
 
         print("Making python venv")
-        subprocess.run(['python3','-m','venv','.venv'])
-
+        if platform.system().lower() == "linux":
+            subprocess.run(['python3','-m','venv','.venv'])
+        
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        subprocess.run(['touch','run.ps1'])
-        Write2File(runScript, "run.sh")
-        Write2File(PShellScript, "run.ps1")
-
+        if platform.system().lower() == "linux":
+            subprocess.run(['touch','run.sh'])
+            Write2File(runScript, "run.sh")
+        
     elif langaugePrefix in {"java"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
-        PShellScript = f"javac \"{project_path}\main.java\njava -cp \"{project_path}\" main"
+        BatchScript = f"javac \"{project_path}\main.java\njava -cp \"{project_path}\" main"
         lang = "java"
 
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        subprocess.run(['touch','run.ps1'])
-        Write2File(runScript, "run.sh")
-        Write2File(PShellScript, "run.ps1")
+        if platform.system().lower() == "linux":
+            subprocess.run(['touch','run.sh'])
+            Write2File(runScript, "run.sh")
 
     elif langaugePrefix in {"c++","cpp"}:
-        runScript = f"#!/bin/bash\ncd {project_path}\ng++ -o run main.cpp\n./run\nrm run"
+        runScript = f"#!/bin/bash\ncd \"{project_path}\"\ng++ -o run main.cpp\n./run\nrm run"
+        BatchScript = f"cd {project_path}\ng++ \"-o\" \"run\" \"main.cpp\"\n./runnrm \"run\""
         lang = "cpp"
 
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        Write2File(runScript, "run.sh")
+        if platform.system().lower() == "linux":
+            subprocess.run(['touch','run.sh'])
+            Write2File(runScript, "run.sh")
+        if platform.system().lower() == "windows":
+            subprocess.run(['type','null','>','run.ps1'])
+            Write2File(BatchScript, "run.ps1")
 
     else:
         subprocess.run(["rmdir",project_path])
