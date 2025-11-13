@@ -1,5 +1,6 @@
 import sys
 import os
+import platform
 import subprocess
 from typing import Union
 
@@ -37,6 +38,7 @@ def main():
 
     if langaugePrefix in {"python","py"}:
         runScript = f"#!/bin/bash\n{project_path}/.venv/bin/python {project_path}/main.py"
+        PShellScript = f"& \"{project_path}/.venv/bin/python3\" {project_path}/main.py"
         lang = "py"
 
         print("Making python venv")
@@ -44,15 +46,20 @@ def main():
 
         print("Making run script")
         subprocess.run(['touch','run.sh'])
+        subprocess.run(['touch','run.ps1'])
         Write2File(runScript, "run.sh")
+        Write2File(PShellScript, "run.ps1")
 
     elif langaugePrefix in {"java"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
+        PShellScript = f"javac \"{project_path}\main.java\njava -cp \"{project_path}\" main"
         lang = "java"
 
         print("Making run script")
         subprocess.run(['touch','run.sh'])
+        subprocess.run(['touch','run.ps1'])
         Write2File(runScript, "run.sh")
+        Write2File(PShellScript, "run.ps1")
 
     elif langaugePrefix in {"c++","cpp"}:
         runScript = f"#!/bin/bash\ncd {project_path}\ng++ -o run main.cpp\n./run\nrm run"
