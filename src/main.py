@@ -41,40 +41,30 @@ def main():
 
     if langaugePrefix in {"python","py"}:
         runScript = f"#!/bin/bash\n{project_path}/.venv/bin/python {project_path}/main.py"
-        BatchScript = f"{project_path}/.venv/bin/python {project_path}/main.py"
         lang = "py"
 
         print("Making python venv")
-        if platform.system().lower() == "linux":
-            subprocess.run(['python3','-m','venv','.venv'])
+        subprocess.run(['python3','-m','venv','.venv'])
         
         print("Making run script")
-        if platform.system().lower() == "linux":
-            subprocess.run(['touch','run.sh'])
-            Write2File(runScript, "run.sh")
+        subprocess.run(['touch','run.sh'])
+        Write2File(runScript, "run.sh")
         
     elif langaugePrefix in {"java"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
-        BatchScript = f"javac \"{project_path}\main.java\njava -cp \"{project_path}\" main"
         lang = "java"
 
         print("Making run script")
-        if platform.system().lower() == "linux":
-            subprocess.run(['touch','run.sh'])
-            Write2File(runScript, "run.sh")
+        subprocess.run(['touch','run.sh'])
+        Write2File(runScript, "run.sh")
 
     elif langaugePrefix in {"c++","cpp"}:
         runScript = f"#!/bin/bash\ncd \"{project_path}\"\ng++ -o run main.cpp\n./run\nrm run"
-        BatchScript = f"cd {project_path}\ng++ \"-o\" \"run\" \"main.cpp\"\n./runnrm \"run\""
         lang = "cpp"
 
         print("Making run script")
-        if platform.system().lower() == "linux":
-            subprocess.run(['touch','run.sh'])
-            Write2File(runScript, "run.sh")
-        if platform.system().lower() == "windows":
-            subprocess.run(['type','null','>','run.ps1'])
-            Write2File(BatchScript, "run.ps1")
+        subprocess.run(['touch','run.sh'])
+        Write2File(runScript, "run.sh")
 
     else:
         subprocess.run(["rmdir",project_path])
