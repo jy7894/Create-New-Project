@@ -1,3 +1,5 @@
+| this is a linux only script (i am not bothered making this for windows)
+
 to use this use
 - python3 main.py {ProjectName} {LangaugePrefix} {ProjectPath}
 
@@ -8,4 +10,4 @@ currently this only supports:
 - Java
 - c++
 
-currently this uses python3 and uses bash for run sripts (will add powershell support soon)
+currently this uses python3 and uses bash for run sripts
