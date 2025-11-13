@@ -3,7 +3,7 @@
 to use this use
 - python3 main.py {ProjectName} {LangaugePrefix} {ProjectPath}
 
-- Then use | sh run.sh | (while inside the file)
+- Then use | sh run.sh (while inside the project file)
 
 this creates a project file with a main file and a run script (also makes a venv for python)
 
