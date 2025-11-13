@@ -1,5 +1,9 @@
+| this is a linux only script (i am not bothered making this for windows)
+
 to use this use
 - python3 main.py {ProjectName} {LangaugePrefix} {ProjectPath}
+
+- Then use | sh run.sh (while inside the project file)
 
 this creates a project file with a main file and a run script (also makes a venv for python)
 
@@ -7,5 +11,3 @@ currently this only supports:
 - Python
 - Java
 - c++
-
-currently this uses python3 and uses bash for run sripts (will add powershell support soon)
