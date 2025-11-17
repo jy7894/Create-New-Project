@@ -56,7 +56,7 @@ def main():
         elif platform.system().lower() == "linux":
             Write2File(runScript, "run.sh")
         
-    elif langaugePrefix in {"java"}:
+    elif langaugePrefix in {"java","jar"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
         batScript = f"@echo off\r\njavac \"{project_path}\\main.java\"\r\njava \"{project_path}\\main\""
 
@@ -70,7 +70,7 @@ def main():
         elif platform.system().lower() == "linux":
             Write2File(runScript, "run.sh")
 
-    elif langaugePrefix in {"c++","cpp"}:
+    elif langaugePrefix in {"c++","cpp","cc","cxx"}:
         runScript = f"#!/bin/bash\ncd \"{project_path}\"\ng++ -o run main.cpp\n./run\nrm run"
         batScript = f"@echo off\r\ncd /d \"{project_path}\"\r\ng++ -o run.exe main.cpp\r\nrun.exe\r\ndel run.exe"
 
