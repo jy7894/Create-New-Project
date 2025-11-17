@@ -1,13 +1,19 @@
-| this is a linux only script (i am not bothered making this for windows)
+# Create-New-Project
 
-to use this use
-- python3 main.py {ProjectName} {LangaugePrefix} {ProjectPath}
+A simple script to quickly set up a new project with a main file, a run script, and (for Python) a virtual environment.
 
-- Then use | sh run.sh (while inside the project file)
+---
 
-this creates a project file with a main file and a run script (also makes a venv for python)
-
-currently this only supports:
+## Supported Languages
 - Python
 - Java
-- c++
+- C++
+
+---
+
+## Usage
+
+1. run the main script using your Python interpreter:
+
+```cmd
+{your python interpreter keyword} Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProject}
