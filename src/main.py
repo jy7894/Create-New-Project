@@ -89,7 +89,8 @@ def main():
         raise AttributeError("Langauge not supported")
 
     print("Making main file")
-    subprocess.run(['touch',f'main.{lang}'])
+    with open(f"main.{lang}",'w') as x:
+            pass
 
     print("Sucesfully made project")
 
