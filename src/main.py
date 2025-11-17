@@ -1,5 +1,6 @@
 import sys
 import os
+import venv
 import platform
 import subprocess
 from typing import Union
@@ -12,7 +13,7 @@ def Write2File(text: str, file: Union[str, os.PathLike[str]]):
         raise RuntimeError(f"Failed to write run script: {e}")
 
 def main():
-    if platform.system().lower() != "linux":
+    if platform.system().lower() != "linux" or platform.system().lower() != "windows":
         raise SystemError("This script was made for linux\ni am NOT bothered to try get this working on linux")
 
     if len(sys.argv) > 1:
@@ -41,30 +42,47 @@ def main():
 
     if langaugePrefix in {"python","py"}:
         runScript = f"#!/bin/bash\n{project_path}/.venv/bin/python {project_path}/main.py"
+        batScript = f"@echo off\r\n\"{project_path}\\.venv\\Scripts\\python.exe\" \"{project_path}\\main.py\""
         lang = "py"
 
         print("Making python venv")
-        subprocess.run(['python3','-m','venv','.venv'])
+        venv.EnvBuilder(with_pip=True).create(".venv")
         
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        Write2File(runScript, "run.sh")
+        with open("run.sh",'w') as x:
+            pass
+        if platform.system().lower() == "windows":
+            Write2File(batScript, "run.bat")
+        elif platform.system().lower() == "linux":
+            Write2File(runScript, "run.sh")
         
     elif langaugePrefix in {"java"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
+        batScript = f"@echo off\r\njavac \"{project_path}\\main.java\"\r\njava \"{project_path}\\main\""
+
         lang = "java"
 
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        Write2File(runScript, "run.sh")
+        with open("run.sh",'w') as x:
+            pass
+        if platform.system().lower() == "windows":
+            Write2File(batScript, "run.bat")
+        elif platform.system().lower() == "linux":
+            Write2File(runScript, "run.sh")
 
     elif langaugePrefix in {"c++","cpp"}:
         runScript = f"#!/bin/bash\ncd \"{project_path}\"\ng++ -o run main.cpp\n./run\nrm run"
+        batScript = f"@echo off\r\ncd /d \"{project_path}\"\r\ng++ -o run.exe main.cpp\r\nrun.exe\r\ndel run.exe"
+
         lang = "cpp"
 
         print("Making run script")
-        subprocess.run(['touch','run.sh'])
-        Write2File(runScript, "run.sh")
+        with open("run.sh",'w') as x:
+            pass
+        if platform.system().lower() == "windows":
+            Write2File(batScript, "run.bat")
+        elif platform.system().lower() == "linux":
+            Write2File(runScript, "run.sh")
 
     else:
         subprocess.run(["rmdir",project_path])
