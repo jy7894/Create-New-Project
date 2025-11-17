@@ -18,7 +18,6 @@ A simple script to quickly set up a new project with a main file, a run script, 
 ```cmd
 python Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProject}
 ```
----
 
 2. run with the run script
 ### Linux
@@ -29,6 +28,7 @@ sh run.sh
 ```cmd
 run.bat
 ```
+---
 
 # Create New Project
 
