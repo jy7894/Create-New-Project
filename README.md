@@ -20,7 +20,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 ```
 
 ### 2. run with the run script
-#### Linux
+#### Linux / MacOS
 ```bash
 sh run.sh
 ```
