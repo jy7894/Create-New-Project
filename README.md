@@ -20,6 +20,14 @@ A simple script to quickly set up a new project with a main file, a run script, 
 ```
 ---
 
+# Create New Project
+
+## Requirements
+- **Python 3** (version 3.8 or higher recommended)
+- **Git** (for cloning the repository)
+
+---
+
 ## Download & Installation
 
 ### Linux
