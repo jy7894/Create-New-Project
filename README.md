@@ -20,6 +20,16 @@ python Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProj
 ```
 ---
 
+2. run with the run script
+### Linux
+```bash
+sh run.sh
+```
+### Windows
+```cmd
+run.bat
+```
+
 # Create New Project
 
 ## Requirements
