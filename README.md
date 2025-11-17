@@ -22,7 +22,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 
 ## Download & Installation
 
-### Linux / macOS
+### Linux
 ```bash
 git clone https://github.com/jy7894/Create‑New‑Project.git
 cd Create-New-Project
