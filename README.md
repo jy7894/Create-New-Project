@@ -16,7 +16,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 1. run the main script using your Python interpreter:
 
 ```cmd
-{your python interpreter keyword} Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProject}
+python/python3 Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProject}
 ```
 ---
 
