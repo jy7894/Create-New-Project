@@ -13,9 +13,6 @@ def Write2File(text: str, file: Union[str, os.PathLike[str]]):
         raise RuntimeError(f"Failed to write run script: {e}")
 
 def main():
-    if platform.system().lower() != "linux" or platform.system().lower() != "windows":
-        raise SystemError("This script was made for linux\ni am NOT bothered to try get this working on linux")
-
     if len(sys.argv) > 1:
         projectName = str(sys.argv[1]).strip().lower()
         langaugePrefix = str(sys.argv[2]).strip().lower()
