@@ -17,3 +17,17 @@ A simple script to quickly set up a new project with a main file, a run script, 
 
 ```cmd
 {your python interpreter keyword} Create-New-Project/src/main.py {ProjectName} {LanguagePrefix} {PathToProject}
+
+---
+
+## Download & Installation
+
+### Linux / macOS
+```bash
+git clone https://github.com/jy7894/Create‑New‑Project.git
+cd Create-New-Project
+
+### Windows
+```cmd
+git clone https://github.com/jy7894/Create-New-Project.git
+cd Create-New-Project
