@@ -40,13 +40,8 @@ run.bat
 
 ## Download & Installation
 
-### Linux
-```bash
-git clone https://github.com/jy7894/Create‑New‑Project.git
-cd Create-New-Project
-```
-### Windows
+### Linux/MacOS and Windows
 ```cmd
-git clone https://github.com/jy7894/Create-New-Project.git
+git clone https://github.com/jy7894/Create‑New‑Project.git
 cd Create-New-Project
 ```
