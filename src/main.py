@@ -11,24 +11,15 @@ def Write2File(text: str, file: Union[str, os.PathLike[str]]) -> None:
         raise RuntimeError(f"Failed to write to file '{file}': {e}")
 
 def main() -> None:
-    if len(sys.argv) < 2:
-        raise ValueError("Usage: script.py <projectName> <language> <path(OPTIONAL)>")
+    if len(sys.argv) < 3:
+        raise ValueError("Usage: main.py <projectName> <language> <path(OPTIONAL)>\nLanguage Options: Python, Java, C++")
     
     projectName: str = sys.argv[1].strip().lower()
     langaugePrefix: str = sys.argv[2].strip().lower()
-    givenProjectPath: str = sys.argv[3]
-
-    if not projectName:
-        raise AttributeError("Missing project name")
-        
-    if not langaugePrefix:
-        raise AttributeError("Missing langauge prefix")
-    
-    if not givenProjectPath:
-        givenProjectPath = os.path.basename(os.path.abspath(__file__))
+    givenProjectPath: str = sys.argv[3] if len(sys.argv) > 3 else os.path.dirname(os.path.abspath(__file__))
     
     if not os.path.exists(givenProjectPath):
-        raise AttributeError("Path does not exist")
+        raise FileNotFoundError(f"Path does not exist {givenProjectPath}")
 
     project_path = os.path.join(givenProjectPath, projectName)
 
@@ -42,10 +33,8 @@ def main() -> None:
         batScript = f"@echo off\r\n\"{project_path}\\.venv\\Scripts\\python.exe\" \"{project_path}\\main.py\""
         lang = "py"
 
-        print("Making python venv")
         venv.EnvBuilder(with_pip=True).create(".venv")
-        
-        print("Making run script")
+
         Write2File(batScript, "run.bat")
         Write2File(runScript, "run.sh")
         
@@ -55,7 +44,6 @@ def main() -> None:
 
         lang = "java"
 
-        print("Making run script")
         Write2File(batScript, "run.bat")
         Write2File(runScript, "run.sh")
 
@@ -65,19 +53,17 @@ def main() -> None:
 
         lang = "cpp"
 
-        print("Making run script")
         Write2File(batScript, "run.bat")
         Write2File(runScript, "run.sh")
 
     else:
         os.remove(project_path) if os.path.isfile(project_path) else None
-        raise AttributeError("Langauge not supported")
+        raise AttributeError("Unsupported Langauge\nLanguage Options: Python, Java, C++")
 
-    print("Making main file")
     with open(f"main.{lang}",'w') as x:
             pass
 
-    print("Sucesfully made project")
+    print(f"Sucesfully made project at \"{project_path}\"")
 
 if __name__ == '__main__':
     main()
