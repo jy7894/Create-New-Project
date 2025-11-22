@@ -1,22 +1,22 @@
 import sys
 import os
 import venv
-import platform
-import subprocess
 from typing import Union
 
-def Write2File(text: str, file: Union[str, os.PathLike[str]]):
+def Write2File(text: str, file: Union[str, os.PathLike[str]]) -> None:
     try:
         with open(file, 'w') as f:
             f.write(text)
     except OSError as e:
-        raise RuntimeError(f"Failed to write run script: {e}")
+        raise RuntimeError(f"Failed to write to file '{file}': {e}")
 
-def main():
-    if len(sys.argv) > 1:
-        projectName = str(sys.argv[1]).strip().lower()
-        langaugePrefix = str(sys.argv[2]).strip().lower()
-        givenProjectPath = str(sys.argv[3])
+def main() -> None:
+    if len(sys.argv) < 2:
+        raise ValueError("Usage: script.py <projectName> <language> <path(OPTIONAL)>")
+    
+    projectName: str = sys.argv[1].strip().lower()
+    langaugePrefix: str = sys.argv[2].strip().lower()
+    givenProjectPath: str = sys.argv[3]
 
     if not projectName:
         raise AttributeError("Missing project name")
@@ -25,7 +25,7 @@ def main():
         raise AttributeError("Missing langauge prefix")
     
     if not givenProjectPath:
-        raise AttributeError("Missing project path")
+        givenProjectPath = os.path.basename(os.path.abspath(__file__))
     
     if not os.path.exists(givenProjectPath):
         raise AttributeError("Path does not exist")
@@ -35,7 +35,7 @@ def main():
     os.makedirs(project_path, exist_ok=False)
     os.chdir(project_path)
 
-    lang:str = None
+    lang: str = None
 
     if langaugePrefix in {"python","py"}:
         runScript = f"#!/bin/bash\n{project_path}/.venv/bin/python {project_path}/main.py"
@@ -46,12 +46,8 @@ def main():
         venv.EnvBuilder(with_pip=True).create(".venv")
         
         print("Making run script")
-        with open("run.sh",'w') as x:
-            pass
-        if platform.system().lower() == "windows":
-            Write2File(batScript, "run.bat")
-        elif platform.system().lower() == "linux":
-            Write2File(runScript, "run.sh")
+        Write2File(batScript, "run.bat")
+        Write2File(runScript, "run.sh")
         
     elif langaugePrefix in {"java","jar"}:
         runScript = f"#!/bin/bash\njavac {project_path}/main.java\njava {project_path}/main.java"
@@ -60,12 +56,8 @@ def main():
         lang = "java"
 
         print("Making run script")
-        with open("run.sh",'w') as x:
-            pass
-        if platform.system().lower() == "windows":
-            Write2File(batScript, "run.bat")
-        elif platform.system().lower() == "linux":
-            Write2File(runScript, "run.sh")
+        Write2File(batScript, "run.bat")
+        Write2File(runScript, "run.sh")
 
     elif langaugePrefix in {"c++","cpp","cc","cxx"}:
         runScript = f"#!/bin/bash\ncd \"{project_path}\"\ng++ -o run main.cpp\n./run\nrm run"
@@ -74,15 +66,11 @@ def main():
         lang = "cpp"
 
         print("Making run script")
-        with open("run.sh",'w') as x:
-            pass
-        if platform.system().lower() == "windows":
-            Write2File(batScript, "run.bat")
-        elif platform.system().lower() == "linux":
-            Write2File(runScript, "run.sh")
+        Write2File(batScript, "run.bat")
+        Write2File(runScript, "run.sh")
 
     else:
-        subprocess.run(["rmdir",project_path])
+        os.remove(project_path) if os.path.isfile(project_path) else None
         raise AttributeError("Langauge not supported")
 
     print("Making main file")
