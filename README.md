@@ -15,11 +15,17 @@ A simple script to quickly set up a new project with a main file, a run script, 
 
 ### 1. run the main script using your Python interpreter:
 
+#### Linux/MacOs
+```bash
+sh run.sh ProjectName} {LanguagePrefix} {PathToProject<Optional>}
+```
+#### Windows
 ```cmd
-python src/main.py {ProjectName} {LanguagePrefix} {PathToProject<Optional>}
+run.bat {ProjectName} {LanguagePrefix} {PathToProject<Optional>}
 ```
 
 ### 2. run with the run script
+
 #### Linux / MacOS
 ```bash
 sh run.sh
