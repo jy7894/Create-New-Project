@@ -17,7 +17,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 
 #### Linux/MacOs
 ```bash
-sh run.sh ProjectName} {LanguagePrefix} {PathToProject<Optional>}
+./run.sh ProjectName} {LanguagePrefix} {PathToProject<Optional>}
 ```
 #### Windows
 ```cmd
@@ -28,7 +28,7 @@ run.bat {ProjectName} {LanguagePrefix} {PathToProject<Optional>}
 
 #### Linux / MacOS
 ```bash
-./run.sh
+sh run.sh
 ```
 #### Windows
 ```cmd
