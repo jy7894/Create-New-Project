@@ -13,7 +13,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 
 ## Usage
 
-### 1. run the main script using your Python interpreter:
+### 1. run the main script using:
 
 #### Linux/MacOs
 ```bash
@@ -24,7 +24,7 @@ A simple script to quickly set up a new project with a main file, a run script, 
 run.bat {ProjectName} {LanguagePrefix} {PathToProject<Optional>}
 ```
 
-### 2. run with the run script
+### 2. then to run the project use (inside the project folder)
 
 #### Linux / MacOS
 ```bash
