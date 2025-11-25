@@ -48,6 +48,6 @@ run.bat
 
 ### Linux/MacOS and Windows
 ```cmd
-git clone https://github.com/jy7894/Create‑New‑Project.git
+git clone https://github.com/jy7894/Create-New-Project
 cd Create-New-Project
 ```
