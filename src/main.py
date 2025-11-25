@@ -11,30 +11,28 @@ def Write2File(text: str, file: str | os.PathLike[str]) -> None:
         raise RuntimeError(f"Failed to write to file '{file}': {e}")
     
 def createMainFile(langSuffix: str, projectPath: str | os.PathLike[str]) -> bool:
-    try:
-        if os.path.exists(projectPath):
-            respone: str = input("This file already exists do you want to overwrite it? [Y/n]")
-            if respone == "" or respone.lower() == "y":
-                shutil.rmtree(projectPath)
-            elif respone.lower() == "n":
-                exit()
+    if os.path.exists(projectPath):
+        respone: str = input("This file already exists do you want to overwrite it? [Y/n]")
+        if respone == "" or respone.lower() == "y":
+            shutil.rmtree(projectPath)
+        elif respone.lower() == "n":
+            exit()
         
-        os.makedirs(projectPath, exist_ok=False)
-        os.chdir(projectPath)
+    os.makedirs(projectPath, exist_ok=False)
+    os.chdir(projectPath)
 
-        language, batScript, bashScript = determineLanguage(langSuffix, projectPath)
+    language, batScript, bashScript = determineLanguage(langSuffix, projectPath)
 
-        if language == "py": venv.EnvBuilder(with_pip=True).create(".venv")
+    if language == "py": venv.EnvBuilder(with_pip=True).create(".venv")
 
-        Write2File(batScript, "run.bat")
-        Write2File(bashScript, "run.bash")
+    Write2File(batScript, "run.bat")
+    Write2File(bashScript, "run.bash")
 
-        with open(f"main.{language}",'w') as x: pass
-        print(f"Sucesfully made project at \"{projectPath}\"")
+    with open(f"main.{language}",'w') as x: pass
+    print(f"Sucesfully made project at \"{projectPath}\"")
 
-        return True
-    except OSError as e:
-        raise RuntimeError(f"ERROR creating project: {e}")
+    return True
+
 
 def determineLanguage(language: str, projectPath: str | os.PathLike[str]) -> tuple[str, str, str]:
     """
