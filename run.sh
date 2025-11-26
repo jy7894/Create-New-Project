@@ -5,21 +5,30 @@ language=$2
 path=$3
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-if [ -x "$path"]; then 
-    path="$(pwd)"
+if [ -z "$projectName" ]; then
+    echo "project name:"
+    read projectName
 fi
 
-if [ -z "$PY_CMD" ] && command -v py >/dev/null 2>&1; then
-    PY_CMD=py
+if [ -z "$language" ]; then
+    echo "language:"
+    read language
 fi
 
-if [ -z "$PY_CMD" ] && command -v python3 >/dev/null 2>&1; then
-    PY_CMD=python3
+if [ -z "$path" ]; then 
+    echo "path <Optional>"
+    read path
+
+    if [ -z "$path" ]; then 
+        path="$(pwd)"
+    fi
 fi
 
-if [ -z "$PY_CMD" ] && command -v python >/dev/null 2>&1; then
-    PY_CMD=python
-fi
+for i in python3 python py; do
+    if [ -z "$PY_CMD" ] && command -v $i >/dev/null 2>&1; then
+        PY_CMD="$i"
+    fi
+done
 
 if [ -z "$PY_CMD" ]; then
     echo "No Python installation found."
