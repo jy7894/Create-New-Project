@@ -16,7 +16,7 @@ if [ -z "$language" ]; then
 fi
 
 if [ -z "$path" ]; then 
-    echo "path <Optional>"
+    echo "path<Optional>:"
     read path
 
     if [ -z "$path" ]; then 
