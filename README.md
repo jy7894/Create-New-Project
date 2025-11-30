@@ -28,7 +28,7 @@ run.bat {ProjectName} {LanguagePrefix} {PathToProject<Optional>}
 
 #### Linux / MacOS
 ```bash
-sh run.sh
+./run
 ```
 #### Windows
 ```cmd
