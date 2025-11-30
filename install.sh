@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LINE='export PATH="$PATH:/home/josh/Create-New-Project"'
+LINE='export PATH=$PATH:/home/josh/Create-New-Project'
 FILE="$HOME/.bash_profile"
 
 # Check if the line already exists
