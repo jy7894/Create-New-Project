@@ -50,4 +50,5 @@ run.bat
 ```cmd
 git clone https://github.com/jy7894/Create-New-Project
 cd Create-New-Project
+./install.sh
 ```
