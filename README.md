@@ -46,9 +46,15 @@ run.bat
 
 ## Download & Installation
 
-### Linux/MacOS and Windows
-```cmd
+### Linux/MacOS
+```bash
 git clone https://github.com/jy7894/Create-New-Project
 cd Create-New-Project
 ./install.sh
+```
+
+### Windows
+```cmd
+git clone https://github.com/jy7894/Create-New-Project
+cd Create-New-Project
 ```
