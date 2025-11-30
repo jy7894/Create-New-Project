@@ -26,7 +26,7 @@ def createMainFile(langSuffix: str, projectPath: str | os.PathLike[str]) -> bool
     if language == "py": venv.EnvBuilder(with_pip=True).create(".venv")
 
     Write2File(batScript, "run.bat")
-    Write2File(bashScript, "run.bash")
+    Write2File(bashScript, "run.sh")
 
     with open(f"main.{language}",'w') as x: pass
     print(f"Sucesfully made project at \"{projectPath}\"")
