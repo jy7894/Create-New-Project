@@ -1,7 +1,12 @@
 #!/bin/bash
 
-if grep -wq "export PATH=""$""PATH:/home/josh/Create-New-Project" your_file.txt; then
-    echo already installed
+LINE='export PATH="$PATH:/home/josh/Create-New-Project"'
+FILE="$HOME/.bash_profile"
+
+# Check if the line already exists
+if grep -Fxq "$LINE" "$FILE"; then
+    echo "already installed"
 else
-    echo export PATH="$"PATH:/home/josh/Create-New-Project >> ~/.bash_profile
+    echo "$LINE" >> "$FILE"
+    echo "installed"
 fi
